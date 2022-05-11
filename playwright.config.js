@@ -4,14 +4,14 @@
 
 const config = {
   use: {
-    baseURL: 'http://www.uitestingplayground.com',
+    baseURL: 'https://signup.moonable.dev/',
     headless: false,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'on-first-retry',
-    storageState: 'storageState.json'
+    trace: 'on-first-retry'
   },
-  globalSetup: require.resolve('./global-setup')
+  timeout: 600000
 };
 
 module.exports = config;
