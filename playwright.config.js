@@ -11,7 +11,8 @@ const config = {
     video: 'on-first-retry',
     trace: 'on-first-retry'
   },
-  timeout: 600000
+  timeout: 600000,
+  testDir: './test'
 };
 
 module.exports = config;
