@@ -5,7 +5,7 @@
 Si no tienen instalado el [Playwright](https://playwright.dev/docs/intro#installation)
 
 ```bash
-npx run install
+npx playwright install
 ```
 
 ## Correr Pruebas
