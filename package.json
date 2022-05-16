@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test",
+    "test:watch": "PWDEBUG=1 npx playwright test",
+    "test:trace": "npx playwright show-trace",
+    "test:report": "npx playwright show-report my-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.21.1"
+    "@playwright/test": "^1.21.1",
+    "@types/jest": "^27.5.1"
   }
 }

@@ -1,48 +1,70 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page, context }) => {
+test.describe('Signup', () => {
+  test('error in validations', async ({ page, context }) => {
+    // Go to https://signup.moonable.dev/
+    await page.goto('/');
+  
+    await page.locator('[placeholder="Email"]').click();
 
-  context.tracing.start({ screenshots: true, snapshots: true })
-  // Go to https://signup.moonable.dev/
-  await page.goto('/');
+    await page.locator('[placeholder="Email"]').type(`catixe`);
 
-  await expect(page.locator('h1')).toHaveText('Create your account');
+    await expect(page.locator('text=Enter valid email')).toBeTruthy();
 
-  // Click [placeholder="Email"]
-  await page.locator('[placeholder="Email"]').click();
+    await page.locator('[placeholder="Password"]').click();
 
-  // Fill [placeholder="Email"]
-  await page.locator('[placeholder="Email"]').type(`catixe${Math.floor(Math.random() * (1 - 100) + 100)}@eoscast.com`);
+    await page.locator('[placeholder="Password"]').type('1234');
 
-  // Click [placeholder="Password"]
-  await page.locator('[placeholder="Password"]').click();
+    await expect(page.locator('text=Enter at least 8 characters')).toBeTruthy();
 
-  // Fill [placeholder="Password"]
-  await page.locator('[placeholder="Password"]').type('Test@1234');
+    await page.locator('[placeholder="Password"]').type('12345678');
 
-  // Click [placeholder="Retype Password"]
-  await page.locator('[placeholder="Retype Password"]').click();
+    await expect(page.locator('text=Enter at least 1 lower case')).toBeTruthy();
 
-  // Fill [placeholder="Retype Password"]
-  await page.locator('[placeholder="Retype Password"]').type('Test@1234');
+    await page.locator('[placeholder="Password"]').type('12345678q');
 
-  // Click [placeholder="Country of Residence"]
-  await page.locator('[placeholder="Country of Residence"]').click();
+    await expect(page.locator('text=Enter at least 1 lower case')).toBeTruthy();
 
-  // Fill [placeholder="Country of Residence"]
-  await page.locator('[placeholder="Country of Residence"]').type('spa');
+    await page.locator('[placeholder="Password"]').type('12345678qS');
 
-  // Click [aria-label="dropdown-item-199"]
-  await page.locator('[aria-label="dropdown-item-199"]').click();
+    await expect(page.locator('text=Enter at least 1 symbol')).toBeTruthy();
 
-  // Check [aria-label="terms-privacy-radiobutton"]
-  await page.locator('[aria-label="terms-privacy-radiobutton"]').check();
+    await page.locator('[placeholder="Password"]').type('12345678qS.');
 
-  // Click text=Sign up
-  await page.locator('text=Sign up').click();
+    await expect(page.locator('text=Password is required')).toBeTruthy();
 
-  // Click text=Thanks for Registering!
-  await expect(page.locator('text=Thanks for Registering!')).toHaveText('Thanks for Registering!');
+    await expect(page.locator('text=Sign up')).toBeDisabled();
+  })
 
-  await context.tracing.stop({ path: 'signup.zip' });
+  test('signup ok', async ({ page }) => {
+    await page.goto('/');
+
+    await expect(page.locator('h1')).toHaveText('Create your account');
+  
+    await page.locator('[placeholder="Email"]').click();
+  
+    await page.locator('[placeholder="Email"]').type(`catixe${Math.floor(Math.random() * (1 - 100) + 100)}@moonable.eu`);
+
+    await page.locator('[placeholder="Password"]').click();
+  
+    await page.locator('[placeholder="Password"]').type('Test@1234');
+  
+    await page.locator('[placeholder="Retype Password"]').click();
+  
+    await page.locator('[placeholder="Retype Password"]').type('Test@1234');
+  
+    await page.locator('[placeholder="Country of Residence"]').click();
+  
+    await page.locator('[placeholder="Country of Residence"]').type('spa');
+  
+    await page.locator('[aria-label="dropdown-item-199"]').click();
+  
+    await page.locator('[aria-label="terms-privacy-radiobutton"]').check();
+  
+    await page.locator('text=Sign up').click();
+  
+    await expect(page.locator('text=Thanks for Registering!')).toHaveText('Thanks for Registering!');
+  })
 })
+
+

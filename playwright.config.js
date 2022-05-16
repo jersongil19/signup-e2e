@@ -9,10 +9,15 @@ const config = {
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'on-first-retry',
-    trace: 'on-first-retry'
+    trace: {
+      mode: 'on',
+      screenshots: true,
+      snapshots: true
+    }
   },
-  timeout: 600000,
-  testDir: './test'
+  reporter: [ ['html', { outputFolder: 'my-report' }] ],
+  timeout: 700000,
+  testDir: './tests'
 };
 
 module.exports = config;
