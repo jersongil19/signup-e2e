@@ -1,13 +1,13 @@
 const { test, expect } = require('@playwright/test')
 
 test.describe('Signup', () => {
-  test('error in validations', async ({ page, context }) => {
+  test('error in validations', async ({ page }) => {
     // Go to https://signup.moonable.dev/
     await page.goto('/')
 
     await page.locator('[placeholder="Email"]').click()
 
-    await page.locator('[placeholder="Email"]').type(`catixe`)
+    await page.locator('[placeholder="Email"]').type('catixe')
 
     await expect(page.locator('text=Enter valid email')).toBeTruthy()
 
@@ -66,5 +66,3 @@ test.describe('Signup', () => {
     await expect(page.locator('text=Thanks for Registering!')).toHaveText('Thanks for Registering!')
   })
 })
-
-
