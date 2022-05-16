@@ -15,9 +15,9 @@ const config = {
       snapshots: true
     }
   },
-  reporter: [ ['html', { outputFolder: 'my-report' }] ],
+  reporter: [['html', { outputFolder: 'my-report' }]],
   timeout: 700000,
   testDir: './tests'
-};
+}
 
-module.exports = config;
+module.exports = config
