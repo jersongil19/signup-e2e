@@ -1,9 +1,9 @@
 const { test, expect } = require('@playwright/test')
 const Mailosaur = require('mailosaur')
 
-const serverId = 'wgjndltd'
+const serverId = ''
+const apiKey = ''
 const serverDomain = '@wgjndltd.mailosaur.net'
-const apiKey = '5KwgVO1Mhc8eMTz1'
 const mailosaur = new Mailosaur(apiKey)
 const testEmail = `catixe${Math.floor(Math.random() * (1 - 100) + 100)}${serverDomain}`
 
