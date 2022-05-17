@@ -15,9 +15,12 @@
   "devDependencies": {
     "@playwright/test": "^1.21.1",
     "@types/jest": "^27.5.1",
+    "mailosaur": "^8.3.0",
     "standard": "^17.0.0"
   },
   "eslintConfig": {
-    "extends": ["./node_modules/standard/eslintrc.json"]
+    "extends": [
+      "./node_modules/standard/eslintrc.json"
+    ]
   }
 }
